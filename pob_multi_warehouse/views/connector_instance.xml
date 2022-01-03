@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <data>
+        <!-- Connector Instance Configuration -->
+        <record id="connector_instance_form" model="ir.ui.view">
+            <field name="name">connector.instance.form</field>
+            <field name="model">connector.instance</field>
+            <field name="type">form</field>
+            <field name='inherit_id' ref='bridge_skeleton.connector_instance_form'/>
+            <field name="arch" type="xml">
+                <xpath expr="//notebook[1]" position='inside'>
+                    <page string="POB Multi WareHouse" name="multiwarehouse_setting" attrs="{'invisible': [('credential','!=', True)]}">
+                        <h2 style="margin-top: 10px !important;background-color: #e9ecef;padding-left: 8px;">
+                            POB Multi WareHouse Configuration
+                        </h2>
+                        <p class="text-muted" style="margin-left:5%">
+                            Default Configuration For stock used for client,
+                            while updating stock from odoo to prestashop
+                        </p>
+                        <div class="row mt16 o_settings_container">
+                            <div class="col-xs-12 col-md-6 o_setting_box">
+                                <div class="o_setting_right_pane">
+                                    <label string="Odoo`s Warehouse(s) used with POB" for="pob_warehouse_used"/>
+                                    <div class="text-muted">
+                                        Multi Warehouse to use with POB
+                                    </div>
+                                    <div class="text-muted">
+                                        <b><field name="pob_warehouse_used"/></b>
+                                    </div>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label string="Select Warehouse" for="pob_default_warehouse"/>
+                                    <div class="text-muted">
+                                        WareHouse to be used with POB
+                                    </div>
+                                    <div class="text-muted">
+                                        <b><field name="pob_default_warehouse" attrs="{'invisible': [('pob_warehouse_used', '=', 'all')]}"/></b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </page>
+                </xpath>
+            
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <data>
+        
+        <record id="order_status_compare_view_form" model="ir.ui.view">
+            <field name='name'>Order Status Compare</field>
+            <field name='model'>order.status.compare</field>
+            <field name='arch' type='xml'>
+                <form create="false" edit="false">
+                    <sheet>
+                        <group >
+                            <group string="Specific Order">
+                                <div>
+                                    <div style="float:left;width:250px">
+                                        <field name="specific_order" placeholder="Enter Order Name"/>
+                                    </div>
+                                    <div style="float:left;margin-left:20px;height:30px;" >
+                                        <button name="get_specific_order"
+                                            string="Search"
+                                            class="oe_highlight"
+                                            style="height:25px;"
+                                            type="object"/>
+                                        <button name="get_all_order"
+                                            string="All orders"
+                                            class="oe_highlight"
+                                            style="height:25px;margin-left:10px;"
+                                            type="object"/>
+                                    </div>
+                                </div>
+                            </group>
+                        </group>
+                        
+                        <separator string=""/>
+                        <group string="Order Status by Date ">
+                            <group >
+                                <field name="date_from"/>
+                                
+                            </group>
+                            <group >
+                                <field name="date_to"/>
+                                <div></div>
+                                    <div style="float:right;margin-right:40px;">
+                                        <button name="get_date_order"
+                                                    string="Search"
+                                                    class="oe_highlight"
+                                                    style="height:25px;"
+                                                    type="object"/>
+                                    </div>
+                            </group>
+                        </group>
+                        <separator string=""/>
+                        <group string="Order Status by Id Range ">
+                            <group >
+                                <field name="range_from"/>
+                                
+                             </group>
+                             <group >
+                                <field name="range_to"/>
+                                    <div></div>
+                                    <div style="float:right;margin-right:40px;">
+                                        <button name="get_range_order"
+                                                    string="Search"
+                                                    class="oe_highlight"
+                                                    style="height:25px;"
+                                                    type="object"/>
+                                    </div>
+                             </group>
+                        </group>
+                    </sheet>
+                    
+                </form>
+                
+            </field>
+        </record>
+        <record id="order_status_result_view_form" model="ir.ui.view">
+            <field name='name'>Order Status Result</field>
+            <field name='model'>order.status.result</field>
+            <field name='arch' type='xml'>
+                <tree create='false'>
+                    <field name="reference"  
+                    
+                    />
+                    <field name="erp_order" 
+                    
+                    />
+                    <field name="presta_order" 
+                   
+                    />
+                    <field name="presta_order_status" 
+                
+                    />
+                    <field name="odoo_order_status" 
+                  
+                    />
+                    <!-- <button name="sync_presta_status"
+                            string="prestahop status"
+                            type="object"
+                           />
+                    <button name="sync_odoo_status"
+                            string="Odoo Status"
+                            type="object"
+                            /> -->
+                    <field name="mismatch"
+                    />
+                </tree>
+            </field>
+        </record>
+
+        <record id="order_status_compare_view_action" model="ir.actions.act_window">
+            <field name="name">Prestashop Order Status Compare</field>
+            <field name="res_model">order.status.compare</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">form</field>
+            <field name='target'>inline</field>
+            <field name="view_id" ref="order_status_compare_view_form"/>
+        </record>
+        <menuitem  id="order_status_compare_menu_id" name="Order Status Compare" parent="pob.menu_id_pob_sync" action="order_status_compare_view_action" />
+    </data>
+</odoo>

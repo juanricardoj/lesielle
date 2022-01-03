@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+		<record id="odoo_shop_form" model="ir.ui.view">
+            <field name="name">connector.shop.data.form</field>
+            <field name="model">connector.shop.data</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Odoo Shop" version="7.0">
+					<sheet>
+						<group>
+							<group>
+								<field name="name" class="oe_inline"/>	
+								<field name="warehouse" required='1' class="oe_inline"/>
+								<field name="stock_location" readonly='1'/>
+								<field name='instance_id'/>
+							</group>
+						</group>					
+					</sheet>
+				</form>
+			</field>			
+        </record>
+
+		<record id="odoo_shop_tree" model="ir.ui.view">
+            <field name="name">connector.shop.data.tree</field>
+            <field name="model">connector.shop.data</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Odoo Shop">
+					<field name="name"/>				
+					<field name="warehouse"/>
+					<field name='instance_id'/>
+				</tree>
+			</field>			
+        </record>
+
+		<record id="odoo_shop_tree_action" model="ir.actions.act_window">
+            <field name="name">Odoo Shop</field>
+            <field name="res_model">connector.shop.data</field>
+            <field name="view_mode">tree,form</field>          
+            <field name="view_id" ref="odoo_shop_tree"/>
+        </record>
+		<menuitem  id="id_odoo_shop" name="Odoo Shop" parent="bridge_skeleton.menu_mapping_id" action="odoo_shop_tree_action" sequence="32"  />	
+	</data>
+</odoo>

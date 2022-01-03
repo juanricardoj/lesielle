@@ -1,0 +1,77 @@
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <data>
+
+    <!-- form view for advance stock setting in connector.instance    -->
+    <record id="prestaerp_configure_form_view" model="ir.ui.view">
+        <field name="name">Presta shop configure inherit form</field>
+        <field name="model">connector.instance</field>
+        <field name="inherit_id" ref="bridge_skeleton.connector_instance_form"/>
+        <field name="arch" type="xml">
+        <xpath expr="//page[@name='connector_default_setting']" position="after">
+            <page string=" Advance stock Settings" name=" advance_stock_setting">
+                <group col='6'>
+                    <field name="employee_id" string="Prestashop Employee"/>
+                    <button name="refresh_list" string="Fetch PrestaShop Employee" type="object" class="oe_highlight"/>
+                    <field name="advance_stock" string="Advance Stock"/>
+                </group>
+            </page>
+        </xpath>        
+        </field>
+    </record>
+
+
+    <!-- mapping view for warehouse  -->
+    <record id="prestaerpwarehouse_form_view" model="ir.ui.view">
+                <field name="name">Warehouse Mapping Data</field>
+                <field name="model">wk.advance.stock</field>
+                <field name="arch" type="xml">
+                    <form create="false">
+                        <sheet>
+                            <group col="4">
+                                <field name="currency_id"/>
+                                <field name="presta_warehouse_id"/>
+                                <field name="location"/>
+                            </group>
+                        </sheet>
+                    </form>
+                </field>
+        </record>
+    <record id="prestaerpwarehouse_tree_view" model="ir.ui.view">
+            <field name="name">Warehouse Mapping Data</field>
+            <field name="model">wk.advance.stock</field>
+            <field name="arch" type="xml">
+                <tree create="false">
+                    <field name="currency_id"/>
+                    <field name="presta_warehouse_id"/>
+                    <field name="location"/>
+                </tree>
+            </field>
+        </record>
+        <record id="presta_erp_warehouse_action" model="ir.actions.act_window">
+                    <field name="name">Warehouse Mapping</field>
+                    <field name="res_model">wk.advance.stock</field>
+                    <field name="view_mode">tree,form</field>
+        </record>
+
+        <menuitem name="Warehouse Mapping" id="presta_odoo_mapping_details"
+                        parent="bridge_skeleton.menu_mapping_id"
+                        action="presta_erp_warehouse_action"/>
+
+        
+             <record id="prestashop_multi_shop_inherit_form_view" model="ir.ui.view">
+                <field name="name">Mutli Shop Inherit View</field>
+                <field name="model">connector.shop.data</field>
+                <field name="inherit_id" ref="prestashop_bridge_multishop.odoo_shop_form"/>
+                <field name="arch" type="xml">
+                    <xpath expr="//field[@name='stock_location']" position="after">
+                        <field name='route_id' string = 'Stock Location Route'/>
+                    </xpath>
+                    <xpath expr="//field[@name='stock_location']" position="attributes">
+                        <attribute name='invisible'>1</attribute>
+                    </xpath>        
+            </field>
+        </record>
+    </data>
+</odoo>

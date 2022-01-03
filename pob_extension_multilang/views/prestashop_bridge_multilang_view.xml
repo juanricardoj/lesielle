@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <data>
+
+
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~prestashoperp_sync_now~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<record id="prestashoperp_sync_now_form_language" model="ir.ui.view">
+		<field name="name">prestashoperp.sync.now.formlang</field>
+        <field name="model">prestashoperp.sync.now</field>
+		<!-- <field name="type">form</field> -->
+        <field name="inherit_id" ref="pob.prestashoperp_sync_now_form"/>
+        <field name="arch" type="xml">		
+			<group name="d" position="before">
+				<p class="oe_grey oe_inline">
+                                    In order to sync the records with their translations, 
+									you need to install 'POB:Multi-Language Extension' on prestashop`s server too. 
+									You must mapped all languages with Prestashop`s languages before doing this operation. 
+                </p>
+				<newline/>
+			</group>	
+		</field>		
+	</record>
+<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~prestashop_language~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+	<record id="prestashop_language_form" model="ir.ui.view">
+            <field name="name">prestashop language form</field>
+            <field name="model">prestashop.language</field>
+            <!-- <field name="type">form</field> -->
+            <field name="arch" type="xml">
+                <!-- <form string="Manual Language Mapping" version="7.0" edit="false"> -->
+				<form string="Manual Language Mapping">
+					<sheet>
+						 <separator string="Manual Language Mapping"/>
+						<label for="presta_lang_select" string="Map the prestashop`s language with the openerp`s map."/>
+						<br/>
+						<label for="erp_lang_select" string="On clicking save button it will check and create corresponding entry on prestashop`s end too."/>
+						<newline/>
+						<group>
+								<field name="presta_lang_select" class="oe_inline"/>
+								<newline/>
+								<field name="erp_lang_select" class="oe_inline" />	
+						</group>	
+						<field name="name" invisible="1"/>
+						<field name="erp_language_id" invisible="1"/>
+						<field name="presta_language_id" invisible="1"/>
+						<field name="code" invisible="1"/> 
+						
+					</sheet>
+				</form>
+			</field>			
+    </record>
+		<record id="prestashop_language_tree" model="ir.ui.view">
+            <field name="name">prestashop.language.tree</field>
+            <field name="model">prestashop.language</field>
+            <!-- <field name="type">tree</field> -->
+            <field name="arch" type="xml">
+                <tree string="Languages">													
+						<field name="id"/>				
+						<field name="name"/>				
+						<field name="code"/>				
+						<field name="erp_language_id"/>	
+						<field name="presta_language_id"/>	
+				</tree>
+			</field>			
+        </record>
+		<record id="prestashop_language_tree_action" model="ir.actions.act_window">
+            <field name="name">Prestashop language</field>
+            <field name="res_model">prestashop.language</field>
+            <field name="view_type">form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="view_mode">tree,form</field>          
+            <field name="view_id" ref="prestashop_language_tree"/>
+        </record>
+	
+	<!--~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~Inherited-Menu~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~-->
+		<menuitem  id="menu_id_manual_mapping" name="Manual Mapping" parent="pob.id_parent_prestashoperp" sequence="3"/>
+		<menuitem  id="manual_mapping_id_lang" name="Language Mapping" parent="menu_id_manual_mapping" action="prestashop_language_tree_action"/>
+	
+	</data>
+</odoo>

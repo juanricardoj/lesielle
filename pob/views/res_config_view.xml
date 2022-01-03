@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+        <record id="view_pob_config_settings" model="ir.ui.view">
+            <field name="name">res.config.settings.pob.inherited.settings</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="20"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                 <xpath expr="//div[hasclass('settings')]" position="inside">
+                    <div class="app_settings_block" data-string="POC Configuración" data-key="pob" groups="pob.group_pob_connector_manager">
+                      <div class="container-fluid">
+                        <div class="row mt-3 ml-5">
+                            <div class="col-8 align-self-center" style="
+    text-align: center;">
+                                    <h1>Configuración Conector Prestashop</h1>
+                            </div>
+                            <div class="row">
+                                <div class="col-6" >
+                                    <div class="row">
+                                        <group string="POC Configuración por defecto">
+                                            <field name="pob_default_stock_location" />
+                                            <field name="pob_default_category" />
+                                            <field name="team_id" />
+                                            <field name="salesperson" />
+                                            <field name="payment_term" />
+                                            <field name="stock_type" />
+                                        </group>
+                                    </div>
+                                    <div class="row">
+                                        <group string="Estado del pedido : Odoo a Prestashop">
+                                            <field name="delivered" />
+                                            <field name="invoiced" /> 
+                                            <field name="cancelled" />
+                                        </group>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8" >
+                                        <div class="row">
+                                            <group string="Default Products">
+                                                <group>
+                                                    <field name="pob_discount_product" />
+                                                    <field name="pob_delivery_product" />
+                                                </group>
+                                                <group></group>
+                                            </group>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4" >
+                                        <div class="row">
+                                            <group string="Modules">
+                                                <group>
+                                                    <field name="module_pob_extension_stock" />
+                                                    <field name="module_pob_extension_multilang" />
+                                                </group>
+                                                <group></group>
+                                            </group>
+                                        </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12" >
+                                        <div class="row">
+                                            <group string="Resetear datos" groups="base.group_no_one">
+                                                    <button name="pob_reset_mapping" class="oe_highlight" type="object" string="Resetear datos"/> 
+                                                    <span></span>
+                                                    <span style="color:red;">Atención: Eliminara todo los datos de Odoo con Prestashop</span>
+                                            </group>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="action_pob_config_settings" model="ir.actions.act_window">
+            <field name="name">Settings</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.config.settings</field>
+            <field name="view_id" ref="view_pob_config_settings"/>
+            <field name="view_mode">form</field>
+            <field name="target">inline</field>
+            <field name="context">{'module' : 'pob'}</field>
+        </record>
+
+    <menuitem id="menu_pob_general_settings"
+        name="Settings"
+        parent="menu_id_core_setting"
+        sequence="5"
+        action="action_pob_config_settings"
+        groups="base.group_system"/>
+</odoo>
+
+

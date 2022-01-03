@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+    <data>
+        <record id="ecommerce_language_mapping_form" model="ir.ui.view">
+            <field name="name">connector.language_mapping.form</field>
+            <field name="model">connector.language.mapping</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Language Mapping" create="false" edit="false">
+                    <group>
+                        <field name="name" required="1" />
+                        <field name="odoo_lang_id" readonly="1" />
+                        <field name="ecommerce_lang_id" readonly="1" />
+                        <field name="instance_id"  />
+                    </group>
+                </form>
+            </field>
+
+        </record>
+
+        <record id="ecommerce_language_mapping_tree" model="ir.ui.view">
+            <field name="name">connector.language.mapping.tree</field>
+            <field name="model">connector.language.mapping</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree create="true" string="Language Mapping">
+                    <field name="name" required="1" />
+                    <field name="odoo_lang_id" readonly="1" />
+                    <field name="ecommerce_lang_id" readonly="1" />
+                    <field name="instance_id" readonly="1"/>
+                    <field name="ecommerce_channel" readonly="1"/>
+                </tree>
+            </field>
+        </record>
+        <record id="connector_language_search" model="ir.ui.view">
+            <field name="name">connector.language.mapping.search</field>
+            <field name="model">connector.language.mapping</field>
+            <field name="arch" type="xml">
+                <search string="Language">
+                    <field name="name"/>
+                    <field name="odoo_lang_id"/>
+                    <field name="ecommerce_lang_id"/>
+                    <group expand="0" string="Group By">
+                        <filter string="Channel" name="group_by_ecomm" context="{'group_by':'ecommerce_channel'}"/>
+                        <filter string="Instance" name="group_by_instance" context="{'group_by':'instance_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="ecommerce_language_mapping_tree_action" model="ir.actions.act_window">
+            <field name="name">Language Mapping</field>
+            <field name="res_model">connector.language.mapping</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="ecommerce_language_mapping_tree"/>
+            <field name="context">{"search_default_group_by_ecomm":1,"search_default_group_by_instance":1}</field>
+            <field name="search_view_id" ref = "connector_language_search"/>
+        </record>
+        <menuitem id="menu_connector_language" name="Language Mapping" parent="bridge_skeleton.menu_mapping_id" action="ecommerce_language_mapping_tree_action" groups="bridge_skeleton.group_connector_manager" sequence="32"/>
+    </data>
+</odoo>
+

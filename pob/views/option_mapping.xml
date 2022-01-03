@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <data>
+    <record id="connector_option_tree" model="ir.ui.view">
+        <field name="name">inherit.connector.option.mapping.tree</field>
+        <field name="model">connector.option.mapping</field>
+        <field name="type">tree</field>
+        <field name='inherit_id' ref = 'bridge_skeleton.connector_option_tree'/>
+        <field name="arch" type="xml">
+            <field name='odoo_id' position = 'after'>
+                <field name='odoo_attr_id'/>
+            </field>
+            <field name='ecomm_id' position = 'after'>
+                <field name='ecomm_attr_id'/>
+            </field>
+        </field>
+    </record>
+ </data>
+</odoo>

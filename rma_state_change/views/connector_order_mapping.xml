@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="rma_connector_order_mapping" model="ir.ui.view">
+            <field name="name">connector.order.mapping.inherit</field>
+            <field name="model">connector.order.mapping</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="bridge_skeleton.connector_order_tree" />
+            <field name="arch" type="xml">
+               <field name='is_shipped' position='after'>
+			   		<field name='partial_refund'/>
+					<field name='refunded'/>
+				</field>
+            </field>
+        </record>  
+    </data>
+</odoo>

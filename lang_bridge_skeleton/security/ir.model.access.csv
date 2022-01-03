@@ -1,0 +1,9 @@
+<<<<<<< HEAD
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_multilang_user,connector.language.mapping,model_connector_language_mapping,bridge_skeleton.group_connector_manager,1,1,1,1
+
+=======
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_multilang_user,connector.language.mapping,model_connector_language_mapping,bridge_skeleton.group_connector_manager,1,1,1,1
+
+>>>>>>> c544edccc156eb935c7711a71460675f868e9c4b

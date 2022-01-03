@@ -1,0 +1,3 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_pob_multishop_user,connector.shop.data,prestashop_bridge_multishop.model_connector_shop_data,bridge_skeleton.group_connector_user,1,1,1,0
+access_pob_multishop_manager,connector.shop.data,prestashop_bridge_multishop.model_connector_shop_data,bridge_skeleton.group_connector_manager,1,1,1,1

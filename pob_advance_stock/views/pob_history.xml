@@ -1,0 +1,59 @@
+<odoo>
+    <data>
+    <record id="pob_advance_stock_tree" model="ir.ui.view">
+            <field name="name">Pob Advance Stock History</field>
+            <field name="model">pob.advance.stock.history</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Pob Advance Stock" create="false" edit="false">
+                    <field name="product_id"/>
+                    <field name="odoo_location_id"/>
+                    <field name="quantity"/>
+                    <field name="state"/>
+                    <field name="message"/>
+                    <field name='create_date'/>
+                    <field name='operation'/>
+                    <field name='instance_id'/>
+                    <field name="ecommerce_channel"/>
+                </tree>
+            </field>
+        </record>
+
+    <record id="connector_advance_stock_searching" model="ir.ui.view">
+        <field name="name">Pob Advance Stock History</field>
+        <field name="model">pob.advance.stock.history</field>
+        <field name="arch" type="xml">
+            <search string="Stock">
+                <!-- <field name="message" filter_domain="[('message','ilike',self)]"/> -->
+                <field name="product_id"/>
+                <group expand="0" string="Group By">
+                    <filter string="Channel" name="group_by_ecomm" context="{'group_by':'ecommerce_channel'}"/>
+                    <filter string="Instance" name="group_by_instance" context="{'group_by':'instance_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="pob_advance_stock_action" model="ir.actions.act_window">
+            <field name="name">Pob Advance Stock History</field>
+            <field name="res_model">pob.advance.stock.history</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="pob_advance_stock_tree"/>
+            <field name="context">{"search_default_group_by_ecomm":1,"search_default_group_by_instance":1}</field>
+            <field name="search_view_id" ref="connector_advance_stock_searching"/>
+    </record>
+
+
+
+    <record id="action_failed_sychronise_stock" model="ir.actions.server">
+            <field name="name">Synchronize Stock To Prestashop</field>
+            <field name="type">ir.actions.server</field>
+            <field name="model_id" ref="model_pob_advance_stock_history"/>
+            <field name="binding_model_id" ref="model_pob_advance_stock_history"/>
+            <field name="state">code</field>
+            <field name="code">action = model.action_failed_sychronise_stock()</field>        
+    </record>
+
+    <menuitem id="id_pob_advance_stock" name="Pob Advance History Synchronisation" parent="bridge_skeleton.menu_connector_history" action="pob_advance_stock_action" sequence="40"/>
+    </data>
+</odoo>

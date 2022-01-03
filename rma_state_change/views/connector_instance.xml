@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+    <data>
+        <!-- Connector Instance Configuration -->
+        <record id="rma_connector_instance_form" model="ir.ui.view">
+            <field name="name">connector.instance.inherit.form</field>
+            <field name="model">connector.instance</field>
+            <field name="type">form</field>
+            <field name='inherit_id' ref='bridge_skeleton.connector_instance_form'/>
+            <field name="arch" type="xml">
+               <page name='connector_default_setting' position="after">
+			   	 <page string="RMA Settings" name='rma_default_setting'>  
+					<div class="row mt16 o_settings_container">
+						<div class="col-xs-12 col-md-6 o_setting_box">
+							<div class="o_setting_right_pane">
+								<label string="Partial Refunded Status Id" for="partial_refund"/>
+								<div>
+									<field name="partial_refund" placeholder="9"/>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-12 col-md-6 o_setting_box">
+							<div class="o_setting_right_pane">
+								<label string="Refunded Status Id" for="refunded"/>
+								<div>
+									<field name="refund" placeholder="7"/>
+								</div>
+							</div>
+						</div>
+					</div>
+                    </page>
+				</page>
+            </field>
+        </record>
+    </data>
+</odoo>

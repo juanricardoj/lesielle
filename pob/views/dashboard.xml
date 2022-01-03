@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+    <data>
+        <!--  -->
+
+
+
+             <record id="pob_dashboard_action" model="ir.actions.act_window">
+                <field name="name">Dashboard</field>
+                <field name="res_model">pob.dashboard</field>
+                <field name="type">ir.actions.act_window</field>
+                <field name="view_mode">kanban,form</field>
+                <field name="context">{}</field>
+            </record>
+
+            <menuitem name="Dashboard" id="pob_dashboard" parent="id_parent_prestashoperp" action="pob_dashboard_action" sequence="0"/>
+
+    </data>
+</odoo>

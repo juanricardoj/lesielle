@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2016-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<odoo>
+
+
+    <record id="pob_synchronization_search" model="ir.ui.view">
+            <field name="name" >pob.synchronization.history.tree.view</field>
+        <field name="model" >pob.synchronization.history</field>
+            <field name="arch" type="xml">
+            <search string="Failed Synchronization History" >
+                 <group expand="0" string="Group By...">
+                    <filter string="type" name="filter_by_name" context="{'group_by':'name'}"/>
+                 </group>
+            </search>
+            </field>
+    </record>
+
+
+    <record id="pob_synchronization_tree_view" model="ir.ui.view">
+        <field name="name" >pob.synchronization.history.tree.view</field>
+        <field name="model" >pob.synchronization.history</field>
+        <field name="arch" type="xml" >
+            <tree create="false">
+                <field name='name'/>
+                <field name='status'/>
+                <field name='action_on'/>
+                <field name='action'/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="channel_synchronization_action_id" model="ir.actions.act_window">
+            <field name="name">Failed Synchronization History</field>
+            <field name="res_model">pob.synchronization.history</field>
+            <!-- <field name="view_type">form</field> -->
+            <field name="view_mode">tree,form</field>
+            <field name="context">{"search_default_filter_by_name":1}</field>
+            <field name="view_id" ref="pob_synchronization_tree_view"/>
+    </record>
+
+    <menuitem  id="pob_synchronization_menu_id" name="Failed Synchronization" parent="pob.menu_id_pob_sync" action="channel_synchronization_action_id" />
+</odoo>

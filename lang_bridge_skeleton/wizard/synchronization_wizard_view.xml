@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+<odoo>
+    <data>
+        <record id="multi_language_syncronization_wizard_inherited_id" model="ir.ui.view">
+            <field name="name">synchronization.wizard</field>
+            <field name="model">synchronization.wizard</field>
+            <field name="inherit_id" ref="bridge_skeleton.id_synchronization_wizard_form" />
+            <field name="arch" type="xml">
+                <field name="action" position="after">
+                    <field name="translation_sync"  invisible="context.get('check',True)"/>
+                </field>
+            </field>
+        </record>
+    </data>
+</odoo>
+

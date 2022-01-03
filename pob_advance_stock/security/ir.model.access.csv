@@ -1,0 +1,5 @@
+id,name,model_id/id,group_id/id,perm_read,perm_write,perm_create,perm_unlink
+access_pob_advance_stock_user,pob.advance.stock.history,pob_advance_stock.model_pob_advance_stock_history,bridge_skeleton.group_connector_user,1,1,1,0
+access_pob_advance_stock_manager,pob.advance.stock.history,pob_advance_stock.model_pob_advance_stock_history,bridge_skeleton.group_connector_manager,1,1,1,1
+access_wk_advance_stock_user,wk.advance.stock,pob_advance_stock.model_wk_advance_stock,bridge_skeleton.group_connector_user,1,1,1,0
+access_wk_advance_stock_manager,wk.advance.stock,pob_advance_stock.model_wk_advance_stock,bridge_skeleton.group_connector_manager,1,1,1,1

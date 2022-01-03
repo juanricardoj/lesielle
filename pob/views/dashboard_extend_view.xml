@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (c) 2015-Present Webkul Software Pvt. Ltd. (<https://webkul.com/>) -->
+<!-- See LICENSE file for full copyright and licensing details. -->
+<!-- "License URL : <https://store.webkul.com/license.html/>" -->
+
+<odoo>
+
+    <template id="pob_main_container">
+        <div class="o_onboarding_container collapse show">
+            <div class="o_onboarding classes">
+                <div class="o_onboarding_wrap">
+                    <div  class="o_pob_dashboard row">
+                        <div t-if="connrecs and connrecs['active'] != 0" class="col">
+                            <div class="o_welcome_image">
+                                <div style="float:left;margin-left:10px; margin-top:20px;color:#a34a8b">
+                                    <i class="fa fa-plug fa-5x"></i>
+                                </div>
+                                <div class="o_welcome_content" style="float:left;padding-right:4px;margin-left:20px;margin-top:-10px;color:#8e8f8f">
+                                    <h1>Conector Prestashop</h1>
+                                    <h4>Conecta tu Odoo con Prestashop</h4>
+                                    <h5>Comience a administrar sus ventas de Prestashop y Odoo.</h5>
+                                    <div >
+                                    <table>
+                                        <tr style="height:30px;">
+                                            <td t-if="(connrecs and connrecs['totalcon'] != 0)" class="o_main2" style="text-align: center;width:200px">
+                                                <a data-reload-on-close="true"
+                                                    type="action" role="button"
+                                                    data-method="open_bulk_synchronization"
+                                                    data-model="pob.dashboard">
+                                                    <span style="cursor:pointer;color:white;">
+                                                    Sincronización masiva</span>
+                                                </a>
+                                            </td>
+                                            <td t-if="(connrecs and connrecs['totalcon'] == 0)" class="o_main2" style="margin-left:250px">
+                                                <a  data-reload-on-close="true"
+                                                    type="action" role="button"
+                                                    data-method="open_bulk_synchronization"
+                                                    data-model="pob.dashboard"
+                                                    name="pob.prestashop_configure_tree"
+                                                    data-extra="new">
+                                                        Configurar Conexión
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div t-if="connrecs and connrecs['active'] != 0" class="col" style="margin-top:-7px;" >
+                            <table class="hidden-xs table table-condensed">
+                                <tr>
+                                <td style="border-top: none;"></td>
+                                    <td t-if="connrecs and connrecs['success'] != false" class="o_main" style="font-size:15px;background-color:#3c763d">
+                                        <a data-reload-on-close="true"
+                                            type="action" role="button"
+                                            data-method="open_pob_success_connection"
+                                            data-model="pob.dashboard"
+                                            style="cursor:pointer;color:white;">
+                                            <i class="fa fa-smile-o" style="font-size:2em"></i><br/>
+                                                Conectado
+                                            <i style="padding-left:5px" class="fa fa-thumbs-up"></i>
+                                        </a>
+                                    </td>
+                                    <td t-if="connrecs and connrecs['success'] == false"
+                                        class="o_main"
+                                        style="font-size:15px;background-color:#a94442">
+                                        <a data-reload-on-close="true"
+                                            type="action" role="button"
+                                            context="{'search_default_error':1}"
+                                            data-method="open_pob_error_connection"
+                                            data-model="pob.dashboard"
+                                            style="cursor:pointer;color:white;">
+                                            <i class="fa fa-frown-o" style="font-size:2em"></i><br/>
+                                                Sin Conexión
+                                            <i style="padding-left:5px" class="fa fa-thumbs-down"></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div t-if="connrecs and connrecs['active'] == 0" class="" style="color:#8f9090;margin: 0 auto">
+                            <div class="o_welcome_image" style="float:left;color:#875a7b;margin-right:20px">
+                                <i class="fa fa-smile-o fa-10x"></i>
+                            </div>
+                            <div class="" style="float:right;">
+                                <h2>¡Hola!</h2>
+                                <h4>
+                                Actualmente no hay ninguna conexión con Prestashop, Por favor configure una.
+                                </h4>
+                                <a data-reload-on-close="true"
+                                    type="action" role="button"
+                                    class="btn btn-primary new_conn"
+                                    data-method="create_new_connection"
+                                    data-model="pob.dashboard"
+                                    style="cursor:pointer;color:white;">
+                                        Configurar Conexión
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="pob_dashboard_onboarding_panel" name="pob.dashboard.onboarding.panel">
+        <t t-call="pob.pob_main_container"/>
+    </template>
+
+
+</odoo>

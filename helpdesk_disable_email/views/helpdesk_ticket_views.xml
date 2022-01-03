@@ -1,0 +1,14 @@
+<odoo>
+ <record id="helpdesk_ticket_disable_email_view_form" model="ir.ui.view">
+        <field name="name">helpdesk.ticket.disableemail.inherit.view.form</field>
+        <field name="model">helpdesk.ticket</field>
+        <field name="inherit_id" ref="helpdesk.helpdesk_ticket_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='description']" position="before">
+                <group>
+                    <field name="send_email" widget="email_check"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
